@@ -37,11 +37,11 @@ Case 11: 2^305-19*3^189 = 11*(u*u+v*v) (3^3 guesses)
 import time
 import argparse
 from helpers import possibly_parallel, supersingular_gens, fast_log3
-import public_values_aux
-from public_values_aux import *
+# import public_values_aux
+# from public_values_aux import *
 
 set_verbose(-1)
-
+load('public_values_aux.sage')
 load('speedup.sage')
 load('richelot_aux.sage')
 
@@ -54,7 +54,7 @@ opts = argp.parse_args()
 print("Instantiate E_start...")
 a, b = 305, 192
 p = 2^a*3^b - 1
-public_values_aux.p = p
+# public_values_aux.p = p
 
 Fp2.<i> = GF(p^2, modulus=x^2+1)
 R.<x> = Fp2[]
@@ -194,8 +194,9 @@ def CheckGuess(guess):
         print("Computed image of 3-adic torsion in split factor C_B")
         Z3 = Zmod(3^b)
         G1_CB, G2_CB = supersingular_gens(CB)
-        G1_CB3 = ((p+1) / 3^b) * G1_CB
-        G2_CB3 = ((p+1) / 3^b) * G2_CB
+        # Changed / to // to get rid of type error (multiply by integer)
+        G1_CB3 = ((p+1) // 3^b) * G1_CB
+        G2_CB3 = ((p+1) // 3^b) * G2_CB
         w = G1_CB3.weil_pairing(G2_CB3, 3^b)
 
         xP = fast_log3(P3_CB.weil_pairing(G1_CB3, 3^b), w)

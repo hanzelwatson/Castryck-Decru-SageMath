@@ -1,6 +1,6 @@
-import public_values_aux
-from public_values_aux import *
-
+# import public_values_aux
+# from public_values_aux import *
+load('public_values_aux.sage')
 load('castryck_decru_shortcut.sage')
 
 # Baby SIKEp64 parameters
@@ -10,7 +10,7 @@ b = 19
 # Set the prime, finite fields and starting curve
 # with known endomorphism
 p = 2^a*3^b - 1
-public_values_aux.p = p
+# public_values_aux.p = p
 
 Fp2.<i> = GF(p^2, modulus=x^2+1)
 R.<x> = PolynomialRing(Fp2)

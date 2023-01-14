@@ -1,7 +1,8 @@
-import public_values_aux
-from public_values_aux import *
+#import public_values_aux
+#from public_values_aux import *
 
 set_verbose(-1)
+load('public_values_aux.sage')
 load('castryck_decru_shortcut.sage')
 load('sandwich_attack.sage')
 
@@ -9,7 +10,7 @@ load('sandwich_attack.sage')
 a = 110
 b = 67
 p = 2^a*3^b - 1
-public_values_aux.p = p
+# public_values_aux.p = p
 
 Fp2.<i> = GF(p^2, modulus=x^2+1)
 assert i^2 == -1

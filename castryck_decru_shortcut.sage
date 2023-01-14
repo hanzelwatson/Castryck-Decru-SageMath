@@ -81,8 +81,11 @@ def CastryckDecruAttack(E_start, P2, Q2, EB, PB, QB, two_i, num_cores=1):
             # 3-torsion at the destination, and compute Weil pairings.
             CB.set_order((p+1)^2, num_checks=1) # keep sanity check
             P_CB, Q_CB = supersingular_gens(CB)
-            P3_CB = ((p+1) / 3^b) * P_CB
-            Q3_CB = ((p+1) / 3^b) * Q_CB
+            #
+            # Edit: changed / to // to get integer multiplication, not rational multiplication
+            #
+            P3_CB = ((p+1) // 3^b) * P_CB
+            Q3_CB = ((p+1) // 3^b) * Q_CB
             w = P3_CB.weil_pairing(Q3_CB, 3^b)
             # Compute kernel
             for G in (P3_CB, Q3_CB):
